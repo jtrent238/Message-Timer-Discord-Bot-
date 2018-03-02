@@ -1,6 +1,7 @@
 var Discord = require('discord.io');
 var logger = require('winston');
 var auth = require('./auth.json');
+var helptxt = require('./help.txt');
 // Configure logger settings
 logger.remove(logger.transports.Console);
 logger.add(logger.transports.Console, {
@@ -33,6 +34,16 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                     message: 'Pong!'
                 });
             break;
+			
+			// !help
+			case 'help':
+				bot.sendMessage({
+					to: channelID,
+					message: helptxt.toString
+				});
+			break;
+			
+			// !createtimer
 			case 'createtimer' + args:
 				bot.sendMessage({
 					to: channelID,
